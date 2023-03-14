@@ -24,12 +24,29 @@ class UserRegistrationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
-            ->add('type', ChoiceType::class, ['choices' => [
-                'Client' => UserDTOInterface::TYPE_CLIENT,
-                'Salesman' => UserDTOInterface::TYPE_SALESMAN,
-            ], 'required' => true, 'placeholder' => 'All types', 'attr' => ['onchange' => 'this.form.submit()']]);
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'placeholder' => 'Email',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('password', PasswordType::class, [
+                'attr' => [
+                    'placeholder' => 'Password',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'Client' => UserDTOInterface::TYPE_CLIENT,
+                    'Salesman' => UserDTOInterface::TYPE_SALESMAN,
+                ],
+                'required' => true,
+                'placeholder' => 'All types',
+                'attr' => [
+                    'class' => 'form-select'
+                ]
+            ]);
     }
 
     /**

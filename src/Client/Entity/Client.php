@@ -6,18 +6,15 @@ namespace App\Client\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Common\Entity\User;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity]
 #[ORM\Table(name: "`client`")]
 class Client extends User
 {
     #[ORM\Column(type: "string", nullable: true)]
-    #[Groups(['client:read'])]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(type: "string", nullable: true)]
-    #[Groups(['client:read'])]
     private ?string $address = null;
 
     /**
