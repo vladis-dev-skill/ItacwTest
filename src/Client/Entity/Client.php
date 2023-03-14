@@ -9,6 +9,7 @@ use App\Common\Entity\User;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity]
+#[ORM\Table(name: "`client`")]
 class Client extends User
 {
     #[ORM\Column(type: "string", nullable: true)]

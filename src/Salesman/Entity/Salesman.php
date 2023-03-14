@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Common\Entity\User;
 
 #[ORM\Entity]
+#[ORM\Table(name: "`salesman`")]
 class Salesman extends User
 {
     #[ORM\Column(type: "string", nullable: true)]

@@ -11,11 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity, ORM\Table(name: "`user`"), UniqueEntity(fields: ["email"])]
-#[ORM\InheritanceType("SINGLE_TABLE"), ORM\DiscriminatorColumn(name: "user_type", type: "string")]
-#[ORM\DiscriminatorMap(['admin' => Admin::class, 'user' => User::class, 'client' => Client::class, 'salesman' => Salesman::class])]
+#[ORM\InheritanceType("JOINED"), ORM\DiscriminatorColumn(name: "user_type", type: "string")]
+#[ORM\DiscriminatorMap(['user' => User::class, 'admin' => Admin::class, 'client' => Client::class, 'salesman' => Salesman::class])]
 class User extends AbstractEntity implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Column(type: "string", unique: true)]
