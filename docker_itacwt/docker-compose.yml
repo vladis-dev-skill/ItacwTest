@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: itacwt_nginx
+    build:
+      context: development/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/itacwt
+    ports:
+      - "8088:80"
+    depends_on:
+      - php-fpm
+  php-fpm:
+    container_name: itacwt_php-fpm
+    build:
+      context: development/php-fpm
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/itacwt
+    depends_on:
+      - database
+  database:
+    container_name: itacwt_database
+    image: postgres:15.1-alpine
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: itacwt
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: itacwt
+    ports:
+      - "5433:5432"
+
+volumes:
+  database:

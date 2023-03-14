@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mb-4 mx-4">
+                    <div class="card-body p-4">
+                        {% include '_flashes.html.twig' %}
+                        <div class="container">
+                            <div class="row text-end">
+                                <div class="col">
+                                    <a class="btn btn-primary px-4" href="{{ path('home') }}">
+                                        <span>Back</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <h1>Sign Up</h1>
+
+                        <p class="text-medium-emphasis">Create your account</p>
+
+                        {{ form_start(form) }}
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa fa-envelope-open"></i>
+                            </span>
+                            {{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}
+                            {{ form_errors(form.email) }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                            {{ form_widget(form.password, {'attr': {'placeholder': 'Password'}}) }}
+                            {{ form_errors(form.password) }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa fa-clipboard-check"></i>
+                            </span>
+                            {{ form_widget(form.type) }}
+                            {{ form_errors(form.type) }}
+                        </div>
+                        <div class="container">
+                            <div class="row text-center">
+                                <div class="col">
+                                    <button class="btn btn-block btn-lg btn-success" type="submit">Create Account
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                    {#                    <div class="card-footer p-4"> #}
+                    {#                        <div class="row"> #}
+                    {#                            <div class="col-12"> #}
+                    {#                                <a class="btn btn-block btn-facebook" href="{{ path('oauth.github') }}"> #}
+                    {#                                    <span>facebook</span> #}
+                    {#                                </a> #}
+                    {#                            </div> #}
+                    {#                        </div> #}
+                    {#                    </div> #}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
