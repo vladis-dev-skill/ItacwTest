@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Users{% endblock %}
+{% block title %}Product show{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
@@ -14,40 +14,44 @@
 
 {% block body %}
 
-    <div class="controls">
-        {% if product.getSalesman.getId == app.user.getId %}
-            <a href="{{ path('products.edit', {'id': product.getId}) }}" class="btn btn-primary">Edit</a>
-        {% endif %}
-    </div>
-
-    <div class="box">
-        <table class="table table-bordered">
-            <tbody>
-            <tr>
-                <th>Name</th>
-                <td>{{ product.getName }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.getPrice }} <span><i class="fa-solid fa-euro-sign"></i></span></td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ salesman.getCountry.getTitle }}</td>
-            </tr>
-            <tr>
-                <th>Tax</th>
-                <td>{{ salesman.getCountry.getTax }} <span><i class="fa-solid fa-percent"></i></span></td>
-            </tr>
-            <tr>
-                <th>Created Date</th>
-                <td>{{ product.getCreatedAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Updated Date</th>
-                <td>{{ product.getUpdatedAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="container-fluid">
+        <div class="text-center">
+            <h2>Show Product</h2>
+        </div>
+        <div class="controls">
+            {% if product.getSalesman.getId == app.user.getId %}
+                <a href="{{ path('products.edit', {'id': product.getId}) }}" class="btn btn-primary">Edit</a>
+            {% endif %}
+        </div>
+        <div class="box">
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ product.getName }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{ product.getPrice }} <span><i class="fa-solid fa-euro-sign"></i></span></td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td>{{ salesman.getCountry.getTitle }}</td>
+                </tr>
+                <tr>
+                    <th>Tax</th>
+                    <td>{{ salesman.getCountry.getTax }} <span><i class="fa-solid fa-percent"></i></span></td>
+                </tr>
+                <tr>
+                    <th>Created Date</th>
+                    <td>{{ product.getCreatedAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Updated Date</th>
+                    <td>{{ product.getUpdatedAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}

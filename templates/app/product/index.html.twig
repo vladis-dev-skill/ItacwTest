@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Users{% endblock %}
+{% block title %}All product{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
@@ -10,20 +10,26 @@
 {% endblock %}
 
 {% block body %}
-
     <div class="container-fluid">
+        <div class="text-center">
+            <h2>All Products</h2>
+        </div>
+
+        <div class="controls">
+            <a href="{{ path('products.create') }}" class="btn btn-outline-success">Create Product</a>
+        </div>
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
                 <th>Salesman</th>
-                <th>Name</th>
+                <th>Title</th>
                 <th>Price
                     &nbsp;&nbsp;<span><i class="fa-solid fa-euro-sign"></i></span>
                 </th>
                 <th>Country</th>
-                <th>Tax
-                    &nbsp;&nbsp;<span><i class="fa-solid fa-percent"></i></span>
-                </th>
+                {#                <th>Tax #}
+                {#                    &nbsp;&nbsp;<span><i class="fa-solid fa-percent"></i></span> #}
+                {#                </th> #}
             </tr>
             </thead>
             <tbody>
@@ -34,7 +40,7 @@
                     <td><a href="{{ path('products.show', {'id': product.getId}) }}">{{ product.name }}</a></td>
                     <td>{{ product.getPrice }}</td>
                     <td>{{ product.getSalesman.getCountry.getTitle }}</td>
-                    <td>{{ product.getSalesman.getCountry.getTax }}</td>
+                    {#                    <td>{{ product.getSalesman.getCountry.getTax }}</td> #}
                 </tr>
             {% endfor %}
             </tbody>

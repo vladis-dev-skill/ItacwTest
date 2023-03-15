@@ -22,11 +22,11 @@ product-controllers:
     namespace: App\Product\Controller
   type: attribute
 
-salesman-controllers:
-  resource:
-    path: ../../src/Salesman/Controller/
-    namespace: App\Salesman\Controller
-  type: attribute
+#salesman-controllers:
+#  resource:
+#    path: ../../src/Salesman/Controller/
+#    namespace: App\Salesman\Controller
+#  type: attribute
 
 kernel:
   resource: App\Kernel

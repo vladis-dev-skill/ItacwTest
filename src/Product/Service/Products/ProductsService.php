@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Product\Service\Products;
 
+use App\Product\DTO\ProductCreateDTO;
 use App\Product\DTO\ProductEditDTO;
 use App\Product\Entity\Product;
 use App\Salesman\Entity\Salesman;
@@ -39,6 +40,17 @@ class ProductsService implements ProductsServiceInterface
         $product->setName($productEditDTO->name)
             ->setPrice($productEditDTO->price);
 
+        $this->entityManager->flush();
+    }
+
+    public function createProduct(ProductCreateDTO $productCreateDTO, Salesman $salesman): void
+    {
+        $product = new Product();
+        $product->setName($productCreateDTO->name)
+            ->setPrice($productCreateDTO->price);
+        $salesman->addProduct($product);
+
+        $this->entityManager->persist($product);
         $this->entityManager->flush();
     }
 }

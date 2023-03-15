@@ -1,15 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product Edit{% endblock %}
+{% block title %}Product Create{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{ path('products') }}">Products</a></li>
-        <li class="breadcrumb-item">
-            <a href="{{ path('products.show', {'id': product.getId}) }}">{{ product.getName }}</a>
-        </li>
-        <li class="breadcrumb-item active">Edit</li>
+        <li class="breadcrumb-item active">Create</li>
     </ol>
 {% endblock %}
 
@@ -17,18 +14,21 @@
 
     <div class="container-fluid">
         <div class="text-center">
-            <h2>Edit Product</h2>
+            <h2>Create Product</h2>
         </div>
         <div class="row justify-content-center">
             <div class="card" style="width: 50rem;">
                 <div class="card-body">
+
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
-                    <button type="submit" class="btn btn-primary mt-2">Save</button>
+                    <button type="submit" class="btn btn-success mt-2">Create</button>
                     {{ form_end(form) }}
+
                 </div>
             </div>
         </div>
     </div>
+
 
 {% endblock %}

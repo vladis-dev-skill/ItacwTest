@@ -6,6 +6,8 @@ namespace App\Common\From;
 
 use App\Common\DTO\UserDTOInterface;
 use App\Common\DTO\UserRegistrationDTO;
+use App\Country\Entity\Country;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -43,6 +45,14 @@ class UserRegistrationForm extends AbstractType
                 ],
                 'required' => true,
                 'placeholder' => 'All types',
+                'attr' => [
+                    'class' => 'form-select'
+                ]
+            ])
+            ->add('country', EntityType::class, [
+                'class' => Country::class,
+                'required' => true,
+                'placeholder' => 'All country',
                 'attr' => [
                     'class' => 'form-select'
                 ]

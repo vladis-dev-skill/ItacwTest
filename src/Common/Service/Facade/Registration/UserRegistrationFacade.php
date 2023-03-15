@@ -21,7 +21,8 @@ final class UserRegistrationFacade implements UserRegistrationFacadeInterface
     public function __construct(
         private readonly EntityManagerInterface      $entityManager,
         private readonly UserPasswordHasherInterface $passwordHasher,
-    ) {
+    )
+    {
     }
 
 
@@ -50,7 +51,9 @@ final class UserRegistrationFacade implements UserRegistrationFacadeInterface
             throw new BadRequestException();
         }
 
-        $userEntity->setEmail($user->email);
+        $userEntity
+            ->setEmail($user->email)
+            ->setCountry($user->country);
 
         // Setting user password
         if ($user->password !== null) {

@@ -15,8 +15,8 @@ class Product extends AbstractEntity
     #[ORM\Column(type: "string", nullable: true)]
     private ?string $name = null;
 
-    #[ORM\Column(type: "bigint")]
-    private int $price;
+    #[ORM\Column(type: "bigint", nullable: true)]
+    private ?int $price = null;
 
     #[ORM\ManyToOne(targetEntity: Salesman::class, inversedBy: "products")]
     #[ORM\JoinColumn(referencedColumnName: "id", nullable: true)]
@@ -33,12 +33,12 @@ class Product extends AbstractEntity
         return $this;
     }
 
-    public function getPrice(): int
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): Product
+    public function setPrice(?int $price = null): Product
     {
         $this->price = $price;
         return $this;

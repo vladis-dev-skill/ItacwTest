@@ -14,7 +14,7 @@
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>Name</th>
+                <th>Title</th>
                 <th>Salesman</th>
                 <th>Price
                     &nbsp;&nbsp;<span><i class="fa-solid fa-euro-sign"></i></span>
@@ -32,7 +32,7 @@
             {% for product in products %}
                 <tr>
                     {# <a href="#">{{ product.getSalesman.getEmail }}</a> #}
-                    <td><a href="{{ path('products.show', {'id': product.getId}) }}">{{ product.name }}</a></td>
+                    <td><a href="{{ path('products.show', {'id': product.getId}) }}">{{ product.getName }}</a></td>
                     <td>{{ product.getSalesman.getEmail }}</td>
                     <td>{{ product.getPrice }}</td>
                     <td>{{ product.getSalesman.getCountry.getTitle }}</td>
