@@ -24,8 +24,7 @@ class ProductsController extends AbstractController
     public function __construct(
         private readonly ProductsServiceInterface $productsService,
         private readonly LoggerInterface          $logger
-    )
-    {
+    ) {
     }
 
     #[Route(path: '', name: '', methods: ["GET"])]
@@ -68,7 +67,6 @@ class ProductsController extends AbstractController
         return $this->render('app/product/create.html.twig', [
             'form' => $form->createView(),
         ]);
-
     }
 
     #[Route(path: "/{id}/edit", name: ".edit")]

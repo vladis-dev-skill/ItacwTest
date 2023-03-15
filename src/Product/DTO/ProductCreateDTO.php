@@ -19,5 +19,4 @@ class ProductCreateDTO
      * @Assert\NotBlank()
      */
     public int $price;
-
 }

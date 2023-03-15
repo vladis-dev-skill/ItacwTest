@@ -39,9 +39,12 @@
                     {#                    <td>{{ product.getSalesman.getCountry.getTax }}</td> #}
                     {% if is_granted('ROLE_CLIENT') %}
                         <td>
-                            <a href="{{ path('product.calculate', {'id': product.getId}) }}" class="btn btn-success">
-                                Calculate the cost
-                            </a>
+                            <div class="p-1">
+                                <a href="{{ path('product.calculate', {'id': product.getId}) }}"
+                                   class="btn btn-success">
+                                    Calculate
+                                </a>
+                            </div>
                         </td>
                     {% endif %}
                 </tr>
