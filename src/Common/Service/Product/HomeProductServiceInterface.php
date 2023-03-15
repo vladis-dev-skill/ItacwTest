@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Common\Service\Product;
@@ -12,5 +13,4 @@ interface HomeProductServiceInterface
      * @throws \Exception
      */
     public function allProduct(): array;
-
 }

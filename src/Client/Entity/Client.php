@@ -80,5 +80,4 @@ class Client extends User
             default => "",
         };
     }
-
 }

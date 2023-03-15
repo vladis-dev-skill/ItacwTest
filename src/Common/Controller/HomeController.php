@@ -15,8 +15,7 @@ class HomeController extends AbstractController
     public function __construct(
         private readonly HomeProductServiceInterface $homeProductService,
         private readonly LoggerInterface             $logger
-    )
-    {
+    ) {
     }
 
     #[Route(path: "/", name: "home")]

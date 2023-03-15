@@ -18,8 +18,7 @@ class UsersController extends AbstractController
     public function __construct(
         private readonly LoggerInterface       $logger,
         private readonly UsersServiceInterface $usersService,
-    )
-    {
+    ) {
     }
 
     #[Route(path: '', name: '', methods: ["GET"])]

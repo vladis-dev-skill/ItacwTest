@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Product\Form;
@@ -34,5 +35,4 @@ class ProductEditForm extends AbstractType
             'data_class' => ProductEditDTO::class,
         ));
     }
-
 }

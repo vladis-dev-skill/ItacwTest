@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Product\Controller;
@@ -21,8 +22,7 @@ class ProductsController extends AbstractController
     public function __construct(
         private readonly ProductsServiceInterface $productsService,
         private readonly LoggerInterface          $logger
-    )
-    {
+    ) {
     }
 
     #[Route(path: '', name: '', methods: ["GET"])]
@@ -73,7 +73,5 @@ class ProductsController extends AbstractController
             'product' => $product,
             'form' => $form->createView(),
         ]);
-
     }
-
 }

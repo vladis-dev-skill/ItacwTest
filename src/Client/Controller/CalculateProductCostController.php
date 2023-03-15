@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Client\Controller;
@@ -13,10 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CalculateProductCostController extends AbstractController
 {
-
     public function __construct(
         private readonly CalculateCostServiceInterface $calculateCostService,
-        private readonly LoggerInterface               $logger)
+        private readonly LoggerInterface               $logger
+    )
     {
     }
 
@@ -36,7 +37,5 @@ class CalculateProductCostController extends AbstractController
             $this->logger->warning($e->getMessage(), ['exception' => $e]);
             return $this->json(['message' => $e->getMessage()]);
         }
-
     }
-
 }

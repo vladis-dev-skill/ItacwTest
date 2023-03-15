@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Product\Service\Products;
@@ -22,5 +23,4 @@ interface ProductsServiceInterface
      * @throws \Exception
      */
     public function editProduct(ProductEditDTO $productEditDTO): void;
-
 }

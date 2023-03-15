@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Client\Service;
@@ -8,7 +9,6 @@ use App\Product\Entity\Product;
 
 class CalculateCostService implements CalculateCostServiceInterface
 {
-
     public function calculate(Product $product, Client $client): string
     {
         $vatClientCountry = $client->getCountry()->getTax();
@@ -21,5 +21,4 @@ class CalculateCostService implements CalculateCostServiceInterface
 
         return number_format($totalPrice, 2);
     }
-
 }
