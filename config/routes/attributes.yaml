@@ -4,6 +4,30 @@ common-controllers:
     namespace: App\Common\Controller
   type: attribute
 
+admin-controllers:
+  resource:
+    path: ../../src/Admin/Controller/
+    namespace: App\Admin\Controller
+  type: attribute
+
+client-controllers:
+  resource:
+    path: ../../src/Client/Controller/
+    namespace: App\Client\Controller
+  type: attribute
+
+product-controllers:
+  resource:
+    path: ../../src/Product/Controller/
+    namespace: App\Product\Controller
+  type: attribute
+
+salesman-controllers:
+  resource:
+    path: ../../src/Salesman/Controller/
+    namespace: App\Salesman\Controller
+  type: attribute
+
 kernel:
   resource: App\Kernel
   type: attribute

@@ -21,8 +21,7 @@ final class UserRegistrationFacade implements UserRegistrationFacadeInterface
     public function __construct(
         private readonly EntityManagerInterface      $entityManager,
         private readonly UserPasswordHasherInterface $passwordHasher,
-    )
-    {
+    ) {
     }
 
 

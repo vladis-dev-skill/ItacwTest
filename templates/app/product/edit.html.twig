@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('products') }}">Products</a></li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('products.show', {'id': product.getId}) }}">{{ product.getName }}</a>
+        </li>
+        <li class="breadcrumb-item active">Edit</li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card" style="width: 50rem;">
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btn btn-primary mt-2">Save</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

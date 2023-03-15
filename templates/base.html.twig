@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
           integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        .controls {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -19,11 +27,16 @@
             <span class="m-2">App</span>
         </a>
 
-        {% if is_granted('ROLE_SALESMAN') %}
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
-            </ul>
-        {% endif %}
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('users') }}" class="nav-link px-2 link-primary">Users</a></li>
+            {% endif %}
+            {% if is_granted('ROLE_SALESMAN') %}
+                <li><a href="{{ path('products') }}" class="nav-link px-2 link-primary">Products</a></li>
+            {% endif %}
+        </ul>
+
 
         <div class="col-md-3 text-end">
             {% if is_granted('ROLE_USER') %}

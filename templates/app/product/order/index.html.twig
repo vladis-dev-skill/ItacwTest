@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Dashboard</a></li>
+        <li class="breadcrumb-item active">{{ product.getName }}</li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+
+    <div class="box">
+        <div class="container">
+            <table class="table table-bordered">
+                <thead>Product</thead>
+                <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ product.getName }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{ product.getPrice }} <span><i class="fa-solid fa-euro-sign"></i></span></td>
+                </tr>
+                <tr>
+                    <th>Product Country</th>
+                    <td>{{ product.getSalesman.getCountry.getTitle }}</td>
+                </tr>
+                <tr>
+                    <th>Tax</th>
+                    <td>{{ product.getSalesman.getCountry.getTax }} <span><i class="fa-solid fa-percent"></i></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <table class="table table-bordered">
+            <thead>Client</thead>
+            <tbody>
+            <tr>
+                <th>Client Country</th>
+                <td>{{ client.getCountry.getTitle }}</td>
+            </tr>
+            <tr>
+                <th>Tax</th>
+                <td>{{ client.getCountry.getTax }} <span><i class="fa-solid fa-percent"></i></span></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th class="bg-dark-subtle">Total cost</th>
+                <td class="bg-dark-subtle">{{ totalCost }} <span><i class="fa-solid fa-euro-sign"></i></span></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

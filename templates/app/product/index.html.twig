@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Dashboard</a></li>
+        <li class="breadcrumb-item active">Products</li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Salesman</th>
+                <th>Name</th>
+                <th>Price
+                    &nbsp;&nbsp;<span><i class="fa-solid fa-euro-sign"></i></span>
+                </th>
+                <th>Country</th>
+                <th>Tax
+                    &nbsp;&nbsp;<span><i class="fa-solid fa-percent"></i></span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    {# <a href="#">{{ product.getSalesman.getEmail }}</a> #}
+                    <td>{{ product.getSalesman.getEmail }}</td>
+                    <td><a href="{{ path('products.show', {'id': product.getId}) }}">{{ product.name }}</a></td>
+                    <td>{{ product.getPrice }}</td>
+                    <td>{{ product.getSalesman.getCountry.getTitle }}</td>
+                    <td>{{ product.getSalesman.getCountry.getTax }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

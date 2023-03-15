@@ -3,15 +3,51 @@
 {% block title %}Home{% endblock %}
 
 {% block breadcrumbs %}
-    <ol class="breadcrumb my-0 ms-2">
-        <li class="breadcrumb-item active">Home</li>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Dashboard</li>
     </ol>
 {% endblock %}
 
 {% block body %}
+
     <div class="container-fluid">
-        <div class="row">
-            <h1>Home page</h1>
-        </div>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Salesman</th>
+                <th>Price
+                    &nbsp;&nbsp;<span><i class="fa-solid fa-euro-sign"></i></span>
+                </th>
+                <th>Country</th>
+                {#                <th>Tax #}
+                {#                    &nbsp;&nbsp;<span><i class="fa-solid fa-percent"></i></span> #}
+                {#                </th> #}
+                {% if is_granted('ROLE_CLIENT') %}
+                    <th>Action</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    {# <a href="#">{{ product.getSalesman.getEmail }}</a> #}
+                    <td><a href="{{ path('products.show', {'id': product.getId}) }}">{{ product.name }}</a></td>
+                    <td>{{ product.getSalesman.getEmail }}</td>
+                    <td>{{ product.getPrice }}</td>
+                    <td>{{ product.getSalesman.getCountry.getTitle }}</td>
+                    {#                    <td>{{ product.getSalesman.getCountry.getTax }}</td> #}
+                    {% if is_granted('ROLE_CLIENT') %}
+                        <td>
+                            <a href="{{ path('product.calculate', {'id': product.getId}) }}" class="btn btn-success">
+                                Calculate the cost
+                            </a>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
+
 {% endblock %}
