@@ -13,3 +13,5 @@ make exec_bash
 ```
 
 Run server in browser: http://localhost:8088
+
+(P.s testing users check this 'src/DataFixtures/UserFixtures.php').
