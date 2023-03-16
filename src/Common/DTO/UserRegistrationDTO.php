@@ -19,6 +19,6 @@ final class UserRegistrationDTO implements UserDTOInterface
     #[Assert\NotBlank, Assert\Choice(choices: UserDTOInterface::USER_TYPES)]
     public string $type;
 
-    #[Assert\NotBlank, Assert\Choice(choices: UserDTOInterface::USER_TYPES)]
+    #[Assert\NotBlank]
     public Country $country;
 }
