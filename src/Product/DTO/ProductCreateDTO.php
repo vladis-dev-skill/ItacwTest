@@ -17,7 +17,7 @@ class ProductCreateDTO
     public string $name;
 
     /**
-     * @Assert\LessThan(value=10)
+     * @Assert\Length(max=10)
      * @Assert\NotBlank()
      */
     public int $price;

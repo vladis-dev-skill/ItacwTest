@@ -15,11 +15,13 @@ class ProductEditDTO
     public string $id;
 
     /**
+     * @Assert\Length(max=50)
      * @Assert\NotBlank()
      */
     public string $name;
 
     /**
+     * @Assert\Length(max=10)
      * @Assert\NotBlank()
      */
     public int $price;
