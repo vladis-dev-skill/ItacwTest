@@ -9,6 +9,7 @@ use App\Client\Entity\Client;
 use App\Common\DTO\UserDTOInterface;
 use App\Common\Entity\User;
 use App\Common\Security\RolesInterface;
+use App\Common\Service\Country\CountryServiceInterface;
 use App\Salesman\Entity\Salesman;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -21,10 +22,13 @@ final class UserRegistrationFacade implements UserRegistrationFacadeInterface
     public function __construct(
         private readonly EntityManagerInterface      $entityManager,
         private readonly UserPasswordHasherInterface $passwordHasher,
+        private readonly CountryServiceInterface     $countryService
     ) {
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     public function registerUser(UserDTOInterface $user): UserInterface
     {
         $userEntity = $this->entityManager->getRepository(User::class)->findOneBy([
@@ -52,7 +56,7 @@ final class UserRegistrationFacade implements UserRegistrationFacadeInterface
 
         $userEntity
             ->setEmail($user->email)
-            ->setCountry($user->country);
+            ->setTaxNumber($this->countryService->creatingTaxNumber($user->country));
 
         // Setting user password
         if ($user->password !== null) {

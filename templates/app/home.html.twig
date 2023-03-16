@@ -19,11 +19,7 @@
                 <th>Price
                     &nbsp;&nbsp;<span><i class="fa-solid fa-euro-sign"></i></span>
                 </th>
-                <th>Country</th>
-                {#                <th>Tax #}
-                {#                    &nbsp;&nbsp;<span><i class="fa-solid fa-percent"></i></span> #}
-                {#                </th> #}
-                {% if is_granted('ROLE_CLIENT') %}
+                {% if is_granted('ROLE_CLIENT') and not is_granted('ROLE_ADMIN') %}
                     <th>Action</th>
                 {% endif %}
             </tr>
@@ -35,9 +31,7 @@
                     <td><a href="{{ path('products.show', {'id': product.getId}) }}">{{ product.getName }}</a></td>
                     <td>{{ product.getSalesman.getEmail }}</td>
                     <td>{{ product.getPrice }}</td>
-                    <td>{{ product.getSalesman.getCountry.getTitle }}</td>
-                    {#                    <td>{{ product.getSalesman.getCountry.getTax }}</td> #}
-                    {% if is_granted('ROLE_CLIENT') %}
+                    {% if is_granted('ROLE_CLIENT') and not is_granted('ROLE_ADMIN') %}
                         <td>
                             <div class="p-1">
                                 <a href="{{ path('product.calculate', {'id': product.getId}) }}"

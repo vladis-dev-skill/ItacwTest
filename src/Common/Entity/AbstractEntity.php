@@ -31,7 +31,7 @@ abstract class AbstractEntity implements TimestampableInterface
     {
         try {
             $this->id = Uuid::uuid4()->toString();
-        } catch (\Exception $exception) {
+        } catch (\Exception) {
         }
     }
 
@@ -47,11 +47,17 @@ abstract class AbstractEntity implements TimestampableInterface
         return $this->createdAt;
     }
 
+    /**
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
     public function getShortClassName(): string
     {
         $reflectionClass = new ReflectionClass(static::class);
@@ -65,6 +71,10 @@ abstract class AbstractEntity implements TimestampableInterface
         return $this->updatedAt;
     }
 
+    /**
+     * @param string|null $id
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;

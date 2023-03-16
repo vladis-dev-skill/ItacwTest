@@ -10,15 +10,13 @@ use App\Product\Entity\Product;
 use App\Product\Repository\ProductRepositoryInterface;
 use App\Salesman\Entity\Salesman;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 final class ProductsService implements ProductsServiceInterface
 {
     public function __construct(
         private readonly ProductRepositoryInterface $productRepository,
         private readonly EntityManagerInterface $entityManager
-    )
-    {
+    ) {
     }
 
     /**

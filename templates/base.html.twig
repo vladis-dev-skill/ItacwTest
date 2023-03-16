@@ -32,11 +32,10 @@
             {% if is_granted('ROLE_ADMIN') %}
                 <li><a href="{{ path('users') }}" class="nav-link px-2 link-primary">Users</a></li>
             {% endif %}
-            {% if is_granted('ROLE_SALESMAN') %}
+            {% if is_granted('ROLE_SALESMAN') and not is_granted('ROLE_ADMIN') %}
                 <li><a href="{{ path('products') }}" class="nav-link px-2 link-primary">Products</a></li>
             {% endif %}
         </ul>
-
 
         <div class="col-md-3 text-end">
             {% if is_granted('ROLE_USER') %}

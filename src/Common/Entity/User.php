@@ -33,6 +33,10 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         return $this->email;
     }
 
+    /**
+     * @param string $role
+     * @return $this
+     */
     public function addRole(string $role): self
     {
         if (\in_array($role, $this->roles, true) === false) {
@@ -42,6 +46,10 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         return $this;
     }
 
+    /**
+     * @param string $role
+     * @return $this
+     */
     public function removeRole(string $role): self
     {
         if (\in_array($role, $this->roles, true)) {
@@ -59,34 +67,55 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         return $this->roles;
     }
 
+    /**
+     * @param string $role
+     * @return bool
+     */
     public function hasRole(string $role): bool
     {
         return \in_array($role, $this->roles, true);
     }
 
+    /**
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail(string $email): User
     {
         $this->email = $email;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
 
+    /**
+     * @param string|null $plainPassword
+     * @return $this
+     */
     public function setPlainPassword(?string $plainPassword = null): User
     {
         $this->plainPassword = $plainPassword;
         return $this;
     }
 
-    public function eraseCredentials()
+    /**
+     * @return void
+     */
+    public function eraseCredentials(): void
     {
         $this->plainPassword = null;
     }

@@ -19,6 +19,7 @@ class CountryFixtures extends Fixture
         $countryGermany = new Country();
         $countryGermany
             ->setTitle('Germany')
+            ->setPrefix("DE")
             ->setTax(19);
         $manager->persist($countryGermany);
         $this->setReference(self::REFERENCE_GERMANY, $countryGermany);
@@ -26,6 +27,7 @@ class CountryFixtures extends Fixture
         $countryItaly = new Country();
         $countryItaly
             ->setTitle('Italy')
+            ->setPrefix("IT")
             ->setTax(22);
         $manager->persist($countryItaly);
         $this->setReference(self::REFERENCE_ITALY, $countryItaly);
@@ -33,6 +35,7 @@ class CountryFixtures extends Fixture
         $countryGreece = new Country();
         $countryGreece
             ->setTitle('Greece')
+            ->setPrefix('GR')
             ->setTax(24);
         $manager->persist($countryGreece);
         $this->setReference(self::REFERENCE_GREECE, $countryGreece);

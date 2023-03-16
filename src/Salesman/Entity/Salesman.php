@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Salesman\Entity;
 
+use App\Client\Entity\Client;
 use App\Common\Entity\User;
-use App\Country\Entity\Country;
 use App\Product\Entity\Product;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -21,9 +21,8 @@ class Salesman extends User
     #[ORM\Column(type: "text", nullable: true)]
     private ?string $about = null;
 
-    #[ORM\ManyToOne(targetEntity: Country::class, cascade: ["persist"])]
-    #[ORM\JoinColumn(referencedColumnName: "id", nullable: true)]
-    private ?Country $country = null;
+    #[ORM\Column(type: "string", nullable: true)]
+    private ?string $taxNumber = null;
 
     /**
      * @var Product[]|Collection
@@ -38,43 +37,57 @@ class Salesman extends User
         $this->products = new ArrayCollection();
     }
 
+    /**
+     * @return string|null
+     */
     public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(?string $phoneNumber): Salesman
+    /**
+     * @param string|null $phoneNumber
+     * @return Salesman
+     */
+    public function setPhoneNumber(?string $phoneNumber = null): Salesman
     {
         $this->phoneNumber = $phoneNumber;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getAbout(): ?string
     {
         return $this->about;
     }
 
-    public function setAbout(?string $about): Salesman
+    /**
+     * @param string|null $about
+     * @return Salesman
+     */
+    public function setAbout(?string $about = null): Salesman
     {
         $this->about = $about;
         return $this;
     }
 
     /**
-     * @return Country|null
+     * @return string|null
      */
-    public function getCountry(): ?Country
+    public function getTaxNumber(): ?string
     {
-        return $this->country;
+        return $this->taxNumber;
     }
 
     /**
-     * @param Country|null $country
+     * @param string|null $taxNumber
      * @return Salesman
      */
-    public function setCountry(?Country $country): Salesman
+    public function setTaxNumber(?string $taxNumber = null): Salesman
     {
-        $this->country = $country;
+        $this->taxNumber = $taxNumber;
         return $this;
     }
 

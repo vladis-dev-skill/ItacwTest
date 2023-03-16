@@ -12,6 +12,12 @@ For go to bash:
 make exec_bash
 ```
 
+For correct style with phpcs:
+
+```bash
+make fixer
+```
+
 Run server in browser: http://localhost:8088
 
 (P.s testing users check this 'src/DataFixtures/UserFixtures.php').

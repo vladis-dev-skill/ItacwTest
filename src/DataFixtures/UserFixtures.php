@@ -7,6 +7,7 @@ namespace App\DataFixtures;
 use App\Admin\Entity\Admin;
 use App\Client\Entity\Client;
 use App\Common\Security\RolesInterface;
+use App\Common\Service\Country\CountryServiceInterface;
 use App\Country\Entity\Country;
 use App\Salesman\Entity\Salesman;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -20,7 +21,10 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     public const REFERENCE_CLIENT = 'country_client';
     public const REFERENCE_SALESMAN = 'country_salesman';
 
-    public function __construct(private readonly UserPasswordHasherInterface $passwordHasher)
+    public function __construct(
+        private readonly CountryServiceInterface     $countryService,
+        private readonly UserPasswordHasherInterface $passwordHasher
+    )
     {
     }
 
@@ -45,8 +49,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             ->setPassword($this->passwordHasher->hashPassword($admin, 'ClientClient'))
             ->addRole(RolesInterface::ROLE_CLIENT)
             ->setPhoneNumber('232342323')
-            ->setCountry($countryGermany)
-            ->setTaxNumber('123456788');
+            ->setTaxNumber($this->countryService->creatingTaxNumber($countryGermany));
         $manager->persist($client);
         $this->setReference(self::REFERENCE_CLIENT, $client);
 
@@ -55,8 +58,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             ->setPassword($this->passwordHasher->hashPassword($admin, 'VladVlad'))
             ->addRole(RolesInterface::ROLE_CLIENT)
             ->setPhoneNumber('9889876559')
-            ->setCountry($countryItaly)
-            ->setTaxNumber('0034433211');
+            ->setTaxNumber($this->countryService->creatingTaxNumber($countryItaly));
         $manager->persist($client2);
         $this->setReference(self::REFERENCE_CLIENT, $client2);
 
@@ -66,7 +68,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             ->addRole(RolesInterface::ROLE_SALESMAN)
             ->setPhoneNumber('543442311')
             ->setAbout('Information about Salesman')
-            ->setCountry($countryGermany);
+            ->setTaxNumber($this->countryService->creatingTaxNumber($countryGermany));
         $manager->persist($salesman);
         $this->setReference(self::REFERENCE_SALESMAN, $salesman);
 

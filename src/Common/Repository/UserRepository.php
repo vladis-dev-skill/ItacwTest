@@ -15,4 +15,17 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         return User::class;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findAllUsers(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('u');
+
+        $queryBuilder
+            ->orderBy('u.updatedAt', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }

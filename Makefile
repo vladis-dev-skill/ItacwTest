@@ -44,5 +44,5 @@ itacwt-phpcs-mkdir:
 itacwt-phpcs-composer:
 	docker exec -it itacwt_php-fpm composer require --no-interaction --working-dir=tools/php-cs-fixer friendsofphp/php-cs-fixer
 
-itacwt-php-cs-fixer:
+fixer:
 	docker exec -it itacwt_php-fpm tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src

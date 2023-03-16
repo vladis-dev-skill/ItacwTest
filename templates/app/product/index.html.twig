@@ -26,10 +26,6 @@
                 <th>Price
                     &nbsp;&nbsp;<span><i class="fa-solid fa-euro-sign"></i></span>
                 </th>
-                <th>Country</th>
-                {#                <th>Tax #}
-                {#                    &nbsp;&nbsp;<span><i class="fa-solid fa-percent"></i></span> #}
-                {#                </th> #}
             </tr>
             </thead>
             <tbody>
@@ -39,8 +35,6 @@
                     <td>{{ product.getSalesman.getEmail }}</td>
                     <td><a href="{{ path('products.show', {'id': product.getId}) }}">{{ product.name }}</a></td>
                     <td>{{ product.getPrice }}</td>
-                    <td>{{ product.getSalesman.getCountry.getTitle }}</td>
-                    {#                    <td>{{ product.getSalesman.getCountry.getTax }}</td> #}
                 </tr>
             {% endfor %}
             </tbody>

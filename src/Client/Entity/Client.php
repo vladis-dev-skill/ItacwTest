@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Client\Entity;
 
 use App\Common\Entity\User;
-use App\Country\Entity\Country;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -14,10 +13,6 @@ class Client extends User
 {
     #[ORM\Column(type: "string", nullable: true)]
     private ?string $phoneNumber = null;
-
-    #[ORM\ManyToOne(targetEntity: Country::class, cascade: ["persist"])]
-    #[ORM\JoinColumn(referencedColumnName: "id", nullable: true)]
-    private ?Country $country = null;
 
     #[ORM\Column(type: "string", nullable: true)]
     private ?string $taxNumber = null;
@@ -40,17 +35,6 @@ class Client extends User
         return $this;
     }
 
-    public function getCountry(): ?Country
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?Country $country = null): Client
-    {
-        $this->country = $country;
-        return $this;
-    }
-
     /**
      * @return string|null
      */
@@ -65,18 +49,7 @@ class Client extends User
      */
     public function setTaxNumber(?string $taxNumber = null): Client
     {
-        $this->taxNumber = $this->findCountryTax($this->country->getTitle()) . $taxNumber;
-
+        $this->taxNumber = $taxNumber;
         return $this;
-    }
-
-    private function findCountryTax($country): string
-    {
-        return match ($country) {
-            "Germany" => "DE",
-            "Italy" => "IT",
-            "Greece" => "GR",
-            default => "",
-        };
     }
 }
