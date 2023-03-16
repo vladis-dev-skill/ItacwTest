@@ -70,7 +70,6 @@ class Client extends User
         return $this;
     }
 
-
     private function findCountryTax($country): string
     {
         return match ($country) {

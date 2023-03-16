@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Common\Controller\Auth;
 
 use App\Common\DTO\UserRegistrationDTO;
-use App\Common\From\UserRegistrationForm;
+use App\Common\Form\UserRegistrationForm;
 use App\Common\Service\Facade\Registration\UserRegistrationFacadeInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

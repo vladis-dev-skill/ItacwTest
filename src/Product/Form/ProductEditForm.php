@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProductEditForm extends AbstractType
+final class ProductEditForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

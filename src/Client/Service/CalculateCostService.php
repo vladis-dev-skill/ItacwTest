@@ -7,8 +7,11 @@ namespace App\Client\Service;
 use App\Client\Entity\Client;
 use App\Product\Entity\Product;
 
-class CalculateCostService implements CalculateCostServiceInterface
+final class CalculateCostService implements CalculateCostServiceInterface
 {
+    /**
+     * {@inheritDoc}
+     */
     public function calculate(Product $product, Client $client): string
     {
         $vatClientCountry = $client->getCountry()->getTax();

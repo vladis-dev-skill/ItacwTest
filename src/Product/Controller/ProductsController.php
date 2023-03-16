@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Product\Controller;
 
+use App\Common\Annotation\Guid;
 use App\Product\DTO\ProductCreateDTO;
 use App\Product\DTO\ProductEditDTO;
 use App\Product\Entity\Product;
 use App\Product\Form\ProductCreateForm;
 use App\Product\Form\ProductEditForm;
+use App\Product\Repository\ProductRepositoryInterface;
 use App\Product\Service\Products\ProductsServiceInterface;
 use App\Salesman\Entity\Salesman;
 use Psr\Log\LoggerInterface;
@@ -19,10 +21,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: 'products', name: 'products')]
-class ProductsController extends AbstractController
+final class ProductsController extends AbstractController
 {
     public function __construct(
         private readonly ProductsServiceInterface $productsService,
+        private readonly ProductRepositoryInterface $productRepository,
         private readonly LoggerInterface          $logger
     ) {
     }
@@ -33,7 +36,7 @@ class ProductsController extends AbstractController
         /** @var Salesman $user */
         $user = $this->getUser();
         try {
-            $products = $this->productsService->allProduct($user);
+            $products = $this->productRepository->findProductsBySalesman($user);
             return $this->render('app/product/index.html.twig', compact('products'));
         } catch (\Exception $e) {
             $this->logger->warning($e->getMessage(), ['exception' => $e]);
@@ -73,11 +76,6 @@ class ProductsController extends AbstractController
     #[IsGranted('ROLE_SALESMAN')]
     public function edit(Product $product, Request $request): Response
     {
-        if ($product->getId() === $this->getUser()->getId()) {
-            $this->addFlash('error', 'Unable to edit yourself.');
-            return $this->redirectToRoute('products.show', ['id' => $product->getId()]);
-        }
-
         $productEditDTO = ProductEditDTO::fromProduct($product);
         $form = $this->createForm(ProductEditForm::class, $productEditDTO);
         $form->handleRequest($request);
@@ -98,7 +96,7 @@ class ProductsController extends AbstractController
         ]);
     }
 
-    #[Route(path: "/{id}", name: ".show")]
+    #[Route(path: "/{id}", name: ".show", requirements: ["id" => Guid::PATTERN])]
     public function show(Product $product): Response
     {
         $salesman = $product->getSalesman();

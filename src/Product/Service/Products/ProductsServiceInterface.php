@@ -12,13 +12,6 @@ use App\Salesman\Entity\Salesman;
 interface ProductsServiceInterface
 {
     /**
-     * @param Salesman $salesman
-     * @return Product[]
-     * @throws \Exception
-     */
-    public function allProduct(Salesman $salesman): array;
-
-    /**
      * @param ProductEditDTO $productEditDTO
      * @return void
      * @throws \Exception

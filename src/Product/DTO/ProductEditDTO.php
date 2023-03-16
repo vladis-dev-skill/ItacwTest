@@ -24,11 +24,6 @@ class ProductEditDTO
      */
     public int $price;
 
-//    /**
-//     * @Assert\NotBlank()
-//     */
-//    public Salesman $salesman;
-
     public function __construct(string $id)
     {
         $this->id = $id;

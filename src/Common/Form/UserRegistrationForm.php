@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Common\From;
+namespace App\Common\Form;
 
 use App\Common\DTO\UserDTOInterface;
 use App\Common\DTO\UserRegistrationDTO;
