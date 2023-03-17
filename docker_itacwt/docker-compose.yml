@@ -32,6 +32,15 @@ services:
       POSTGRES_DB: itacwt
     ports:
       - "5433:5432"
+  redis:
+    container_name: itacwt_redis
+    image: redis:6.0-alpine
+    volumes:
+      - redis:/data
+    ports:
+      - "6378:6379"
+    command: redis-server --requirepass secret
 
 volumes:
   database:
+  redis:

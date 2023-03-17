@@ -24,8 +24,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     public function __construct(
         private readonly CountryServiceInterface     $countryService,
         private readonly UserPasswordHasherInterface $passwordHasher
-    )
-    {
+    ) {
     }
 
 
