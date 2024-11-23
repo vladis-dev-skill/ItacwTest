@@ -14,8 +14,10 @@ class Country extends AbstractEntity
     #[ORM\Column(type: "string", nullable: true)]
     private ?string $title = null;
 
-    #[ORM\Column(type: "string", nullable: true)]
-    private ?string $prefix = null;
+
+    #[ORM\Column(type: "integer", nullable: true)]
+    private ?int $prefix = null;
+
 
     #[ORM\Column(type: "integer", nullable: true)]
     private ?int $tax = null;
